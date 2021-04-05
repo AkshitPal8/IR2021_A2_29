@@ -1,0 +1,1 @@
+cindy joy west augusta va peace song last nite strangest dream never dreamed dreamed world agreed put end war dreamed saw mighty room filled women men paper signing said never fight paper signed million copies made joined hands bowed heads grateful prayers prayed people streets dancing round round guns swords uniforms scattered ground
