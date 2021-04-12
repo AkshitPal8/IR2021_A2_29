@@ -148,7 +148,8 @@ def Query_result2(words):
     for d in doc_list:
         for w in range(len(words)):
             for x in index[words[w]][1][d]:
-                position_list.append([d,x,words[w]])
+                if [d,x,words[w]] not in position_list:
+                    position_list.append([d,x,words[w]])
         
     position_list = sorted(position_list, key=lambda x: (x[0],x[1]))
     final_doc_list = getQueryDocs(position_list,words)
