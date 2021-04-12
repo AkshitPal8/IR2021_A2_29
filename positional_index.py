@@ -35,9 +35,9 @@ for path, subdirs, files in os.walk(root):
 # for file in file_list:
 
 #     filename = file.split('/')[-1]
-#     text = codecs.open(file,'r','unicode_escape')
-#     filetext = text.read()
-#     words = filetext.split(' ')
+    # text = codecs.open(file,'r','unicode_escape')
+    # filetext = text.read()
+    # words = filetext.split(' ')
     
 #     for pos,word in enumerate(words):
 #         if word in index:
@@ -106,19 +106,60 @@ def get_doclist(file_map,mainlist):
 
     return result
 
-def Query_result(words):
+# def Query_result(words):
+#     mainset = set(index.get(words[0])[1])
+    
+#     for i in range(1,len(words)):
+#         mainset = mainset.intersection(index.get(words[i])[1])
+        
+#     print("Number of documents matched: ", len(mainset))
+#     print("List of documents matched: ")
+#     print(get_doclist(file_map,list(mainset)))
+
+def getQueryDocs(position_list,words):
+    result = []
+    n = len(words)-1
+    
+    for x in range(len(position_list)-n):
+        if position_list[x+n][1]-position_list[x][1] == n:
+            if position_list[x+n][0] == position_list[x][0]:
+                #print ("check")
+                true_count=0
+                for i in range(len(words)):
+                    if position_list[x+i][2] == words[i]:
+                        true_count = true_count+1
+                
+                #print(true_count)
+                if true_count==len(words):
+                    result.append(position_list[x][0])
+                    #print("Position at doc ",position_list[x][0]," is ", position_list[x+n][1] ," and ", position_list[x][1])
+    
+    return list(set(result))
+
+def Query_result2(words):
     mainset = set(index.get(words[0])[1])
     
     for i in range(1,len(words)):
         mainset = mainset.intersection(index.get(words[i])[1])
         
-    print("Number of documents matched: ", len(mainset))
+    doc_list = list(mainset)
+    position_list = []
+
+    for d in doc_list:
+        for w in range(len(words)):
+            for x in index[words[w]][1][d]:
+                position_list.append([d,x,words[w]])
+        
+    position_list = sorted(position_list, key=lambda x: (x[0],x[1]))
+    final_doc_list = getQueryDocs(position_list,words)
+    
+    print("Number of documents matched: ", len(final_doc_list))
     print("List of documents matched: ")
-    print(get_doclist(file_map,list(mainset)))
+    print(get_doclist(file_map,final_doc_list))
 
 print('Give input')
 words = input()
 words = preprocess(words)
 
-Query_result(words)
+Query_result2(words)
 
