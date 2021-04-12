@@ -153,6 +153,8 @@ def Top_5_term_frequency(query_vector):
     doc_scores[Keymax] = -doc_scores[Keymax]
 
     count -= 1
+    
+  return Top_Docs
 
 # Gets the names of top 5 most relevant docs acc to log normalization TFIDF weighting
 
@@ -183,6 +185,8 @@ def Top_5_log_normalization(query_vector):
     doc_scores[Keymax] = -doc_scores[Keymax]
 
     count -= 1
+    
+  return Top_Docs
 
 # Gets the names of top 5 most relevant docs acc to double normalization TFIDF weighting
 
@@ -354,6 +358,8 @@ def Top_5_binary_cosine(query_vector):
     doc_scores[Keymax] = -doc_scores[Keymax]
 
     count -= 1
+    
+  return Top_Docs
 
 # USES COSINE SIMILARITY to get the names of top 5 most relevant docs acc to raw count TFIDF weighting
 
@@ -382,6 +388,8 @@ def Top_5_raw_count_cosine(query_vector):
     doc_scores[Keymax] = -doc_scores[Keymax]
 
     count -= 1
+    
+  return Top_Docs
 
 # USES COSINE SIMILARITY to get the names of top 5 most relevant docs acc to term frequency TFIDF weighting
 
@@ -410,6 +418,8 @@ def Top_5_term_frequency_cosine(query_vector):
     doc_scores[Keymax] = -doc_scores[Keymax]
 
     count -= 1
+    
+  return Top_Docs
 
 # USES COSINE SIMILARITY to get the names of top 5 most relevant docs acc to log normalization TFIDF weighting
 
@@ -438,6 +448,8 @@ def Top_5_log_normalization_cosine(query_vector):
     doc_scores[Keymax] = -doc_scores[Keymax]
 
     count -= 1
+    
+  return Top_Docs
 
 # USES COSINE SIMILARITY to get the names of top 5 most relevant docs acc to double normalization TFIDF weighting
 
@@ -491,6 +503,25 @@ for word in words:
     sum_freqs += 1
     max_freq = max(max_freq, query_vector[word_ID])
 
-#print(query_vector)
 
-#print(Top_5_double_normalization_cosine(query_vector))
+print(query_vector)
+
+#Top 5 documents using Binary
+print(Top_5_binary_cosine(query_vector))
+print(Top_5_binary(query_vector))
+
+#Top 5 documents using Raw Count
+print(Top_5_raw_count_cosine(query_vector))
+print(Top_5_raw_count(query_vector))
+
+#Top 5 documents using Term Frequency
+print(Top_5_term_frequency_cosine(query_vector))
+print(Top_5_term_frequency(query_vector))
+
+#Top 5 documents using Double Normalization
+print(Top_5_double_normalization_cosine(query_vector))
+print(Top_5_double_normalization(query_vector))
+
+#Top 5 documents using Log Normalization
+print(Top_5_log_normalization_cosine(query_vector))
+print(Top_5_log_normalization(query_vector))
