@@ -472,7 +472,7 @@ def Top_5_double_normalization_cosine(query_vector):
 
 
 #SPACE TO LOAD THE QUERY - I've written the rest assuming its a string named 'query'
-query ="lion thought thing"  #for now
+query = input()  #for now
 
 words = query.split(' ')
 query_vector = [0]*(len(word_map.keys()) + 1)
